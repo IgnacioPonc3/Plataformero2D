@@ -10,19 +10,20 @@ public class Enemigo : MonoBehaviour
     [SerializeField] private LayerMask queEsSuelo;
     private Rigidbody2D rb2D;
     private Animator animator;
-
+    private EnemyCounter enemyCounter;
 
     private void Start()
     {
         rb2D = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        enemyCounter = FindObjectOfType<EnemyCounter>();
 
     }
 
     private void Update()
     {
         rb2D.velocity = new Vector2(velocidadMovimiento * transform.right.x, rb2D.velocity.y);
-
+        
         RaycastHit2D inforamcionSuelo = Physics2D.Raycast(transform.position, transform.right, distancia, queEsSuelo );
 
         if(inforamcionSuelo)
@@ -59,6 +60,7 @@ public class Enemigo : MonoBehaviour
     {
         animator.SetTrigger("Muerte");
         Destroy(gameObject);
+        enemyCounter.AddKill();
     }
 
 }
