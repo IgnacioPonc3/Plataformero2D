@@ -10,12 +10,16 @@ public class ControladorCaC : MonoBehaviour
     [SerializeField] private float dañoGolpe;
     [SerializeField] private float tiempoEntreAtaques;
     [SerializeField] private float tiempoSiguienteAtaque;
-
+    [SerializeField] private float vida;
+    [SerializeField] private float maximoVida;
+    [SerializeField] private BarraDeVida barraDeVida;
     private Animator animator;
 
     private void Start()
     {
         animator = GetComponent<Animator>();
+        vida = maximoVida;
+        barraDeVida.InicializarBarraDeVida(vida);
     }
 
 
@@ -32,6 +36,15 @@ public class ControladorCaC : MonoBehaviour
         }
     }
 
+    public void TakeDamage(float damage)
+    {
+        vida -= damage;
+        barraDeVida.CambiarVidaActual(vida);
+        if (vida <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
     private void Golpe()
     {
         animator.SetTrigger("Golpe");
