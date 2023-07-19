@@ -50,13 +50,13 @@ public class Enemigo : MonoBehaviour
         
         if (vida <= 0)
         {
-            Muerte();
+            Death();
         }
 
     }
     
 
-    private void Muerte()
+    private void Death()
     {
         animator.SetTrigger("Muerte");
         Destroy(gameObject);
