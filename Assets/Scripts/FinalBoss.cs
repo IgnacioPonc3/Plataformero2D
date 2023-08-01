@@ -13,19 +13,23 @@ public class FinalBoss : MonoBehaviour
     [SerializeField] private float vida;
     [SerializeField] private BarraDeVida barraDeVida;
 
+    [Header("Ataque")]
+    [SerializeField] private Transform controladorAtaque;
+    [SerializeField] private float radioAtaque;
+    [SerializeField] private float damageAtaque;
 
     void Start()
     {
         animator = GetComponent<Animator>();
         rb2D = GetComponent<Rigidbody2D>();
         barraDeVida.InicializarBarraDeVida(vida);
-        jugador = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        jugador = GameObject.FindGameObjectWithTag("Jugador").GetComponent<Transform>();
        
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float daño)
     {
-        vida -= damage;
+        vida -= daño;
 
         barraDeVida.CambiarVidaActual(vida);
 
@@ -51,6 +55,28 @@ public class FinalBoss : MonoBehaviour
 
     void Update()
     {
-        
+       float DistanciaJugador = Vector2.Distance(transform.position, jugador.position);
+        animator.SetFloat("DistanciaJugador", DistanciaJugador);
+    }
+
+    private void Ataque()
+    {
+        Collider2D[] objetos = Physics2D.OverlapCircleAll(controladorAtaque.position, radioAtaque);
+
+        foreach (Collider2D collsion in objetos)
+        {
+            if (collsion.CompareTag("Jugador"))
+            {
+                collsion.GetComponent<CombateJugador>().TakeDamage(damageAtaque);
+            }
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(controladorAtaque.position, radioAtaque);
     }
 }
+
+

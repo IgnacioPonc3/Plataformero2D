@@ -188,7 +188,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5139210}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.015001, y: -0.072401285, z: -10}
+  m_LocalPosition: {x: 155.7, y: -27.162401, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -66456,6 +66456,7 @@ GameObject:
   - component: {fileID: 497473278}
   - component: {fileID: 497473282}
   - component: {fileID: 497473284}
+  - component: {fileID: 497473285}
   - component: {fileID: 497473283}
   m_Layer: 0
   m_Name: Jugador
@@ -66571,7 +66572,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 497473277}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.015, y: -1.91, z: 0}
+  m_LocalPosition: {x: 155.7, y: -29, z: 0}
   m_LocalScale: {x: 4, y: 4, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -66642,6 +66643,19 @@ MonoBehaviour:
   vida: 4
   maximoVida: 10
   barraDeVida: {fileID: 0}
+--- !u!114 &497473285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 497473277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68a4c4946b0f07547892b7bf265b0aee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vida: 25
 --- !u!1 &498943686
 GameObject:
   m_ObjectHideFlags: 0
@@ -66849,7 +66863,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.015001, y: -0.072401285, z: -10}
+  m_LocalPosition: {x: 155.7, y: -27.162401, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -67244,8 +67258,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 731735732}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -11.4585495, y: -0.20924139, z: -0.063186}
-  m_LocalScale: {x: 4, y: 4, z: 1}
+  m_LocalPosition: {x: -11.3799, y: -0.20924139, z: -0.063186}
+  m_LocalScale: {x: 4.0948, y: 4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 498943687}
@@ -67817,7 +67831,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 606c4c792356d1941883d0e528a97585, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb2D: {fileID: 1410879840}
+  rb2D: {fileID: 0}
   jugador: {fileID: 497473281}
   vida: 3
   barraDeVida: {fileID: 945306104}
@@ -67861,7 +67875,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -750047184722822154, guid: 1914d95466e3d4341a618c35a56d5f82, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
@@ -67881,7 +67895,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1410879835}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 135.54, y: -29.47, z: 0}
+  m_LocalPosition: {x: 135.93, y: -29.26, z: 0}
   m_LocalScale: {x: 9, y: 9, z: 4}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -67962,7 +67976,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1410879835}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 49194605e5c2e124e8345bb1dd6b9a2a, type: 3}
   m_Name: 
