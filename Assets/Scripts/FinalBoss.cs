@@ -16,7 +16,7 @@ public class FinalBoss : MonoBehaviour
     [Header("Ataque")]
     [SerializeField] private Transform controladorAtaque;
     [SerializeField] private float radioAtaque;
-    [SerializeField] private float damageAtaque;
+    [SerializeField] private float damageAtack;
 
     void Start()
     {
@@ -53,21 +53,15 @@ public class FinalBoss : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-       float DistanciaJugador = Vector2.Distance(transform.position, jugador.position);
-        animator.SetFloat("DistanciaJugador", DistanciaJugador);
-    }
-
-    private void Ataque()
+    public void Ataque()
     {
         Collider2D[] objetos = Physics2D.OverlapCircleAll(controladorAtaque.position, radioAtaque);
 
-        foreach (Collider2D collsion in objetos)
+        foreach (Collider2D colsion in objetos)
         {
-            if (collsion.CompareTag("Jugador"))
+            if (colsion.CompareTag("Jugador"))
             {
-                collsion.GetComponent<CombateJugador>().TakeDamage(damageAtaque);
+                colsion.GetComponent<CombateJugador>().TakeDamage(damageAtack);
             }
         }
     }
@@ -76,6 +70,12 @@ public class FinalBoss : MonoBehaviour
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(controladorAtaque.position, radioAtaque);
+    }
+
+    void Update()
+    {
+        float distanciaJugador = Vector2.Distance(transform.position, jugador.position);
+        animator.SetFloat("distanciaJugador", distanciaJugador);
     }
 }
 
