@@ -23,4 +23,8 @@ public class Spawner : MonoBehaviour
 
 
     }
+    public void StopSpawning()
+    {
+        StopCoroutine(SpawnObstacle());
+    }
 }

@@ -1,10 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class EnemyCounter : MonoBehaviour
-
 {
     public int enemiesKilled = 0;
     public Text text;
@@ -21,4 +18,3 @@ public class EnemyCounter : MonoBehaviour
         text.text = "Enemigos Abatidos: " + enemiesKilled.ToString();
     }
 }
-

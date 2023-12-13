@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FinalBoss : MonoBehaviour
+public class FinalBoss : MonoBehaviour, Idamage
 {
     private Animator animator;
     public Rigidbody2D rb2D;
-    public Transform jugador; 
+    public Transform jugador;
     private bool mirandoDerecha = true;
 
     [Header("Vida")]
@@ -18,24 +18,26 @@ public class FinalBoss : MonoBehaviour
     [SerializeField] private float radioAtaque;
     [SerializeField] private float damageAtack;
 
+    //[Header("Persecución")]
+    [SerializeField] private float velocidadPersecucion;
+    [SerializeField] private float distanciaPersecucion;
     void Start()
     {
         animator = GetComponent<Animator>();
         rb2D = GetComponent<Rigidbody2D>();
-        barraDeVida.InicializarBarraDeVida(vida);
+        //barraDeVida.InicializarBarraDeVida(vida);
         jugador = GameObject.FindGameObjectWithTag("Jugador").GetComponent<Transform>();
-       
     }
 
     public void TakeDamage(float daño)
     {
         vida -= daño;
 
-        barraDeVida.CambiarVidaActual(vida);
+       // barraDeVida.CambiarVidaActual(vida);
 
-        if(vida <= 0)
+        if (vida <= 0)
         {
-            animator.SetTrigger("Muerte");
+            Muerte();
         }
     }
 
@@ -49,7 +51,9 @@ public class FinalBoss : MonoBehaviour
         if ((jugador.position.x > transform.position.x && !mirandoDerecha) || (jugador.position.x < transform.position.x && mirandoDerecha))
         {
             mirandoDerecha = !mirandoDerecha;
-            transform.eulerAngles = new Vector3(0, transform.eulerAngles.y + 100, 0);
+            Vector3 nuevaEscala = transform.localScale;
+            nuevaEscala.x *= -1;
+            transform.localScale = nuevaEscala;
         }
     }
 
@@ -57,13 +61,18 @@ public class FinalBoss : MonoBehaviour
     {
         Collider2D[] objetos = Physics2D.OverlapCircleAll(controladorAtaque.position, radioAtaque);
 
-        foreach (Collider2D colsion in objetos)
+        foreach (Collider2D colision in objetos)
         {
-            if (colsion.CompareTag("Jugador"))
+            if (colision.CompareTag("Jugador"))
             {
-                colsion.GetComponent<CombateJugador>().TakeDamage(damageAtack);
+                colision.GetComponent<CombateJugador>().TakeDamage(damageAtack);
             }
         }
+    }
+
+    private void Muerte()
+    {
+        animator.SetTrigger("Muerte");
     }
 
     private void OnDrawGizmos()
@@ -76,7 +85,23 @@ public class FinalBoss : MonoBehaviour
     {
         float distanciaJugador = Vector2.Distance(transform.position, jugador.position);
         animator.SetFloat("distanciaJugador", distanciaJugador);
+
+        // Verificar la distancia para activar persecución
+        if (distanciaJugador < distanciaPersecucion)
+        {
+            // Obtener la dirección hacia el jugador
+            Vector2 direccion = (jugador.position - transform.position).normalized;
+
+            // Mover el jefe hacia el jugador en la dirección adecuada
+            rb2D.velocity = new Vector2(direccion.x * velocidadPersecucion, rb2D.velocity.y);
+        }
+        else
+        {
+            // Si el jugador está fuera de la distancia de persecución, detener el movimiento
+            rb2D.velocity = new Vector2(0f, rb2D.velocity.y);
+        }
     }
 }
+
 
 

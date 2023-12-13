@@ -18,8 +18,8 @@ public class ControladorCaC : MonoBehaviour
     private void Start()
     {
         animator = GetComponent<Animator>();
-        vida = maximoVida;
-        barraDeVida.InicializarBarraDeVida(vida);
+        //vida = maximoVida;
+        //barraDeVida.InicializarBarraDeVida(vida);
     }
 
 
@@ -53,9 +53,10 @@ public class ControladorCaC : MonoBehaviour
 
         foreach (Collider2D colisionador in objetos)
         {
-            if (colisionador.CompareTag("Enemigo"))
+            Idamage objeto = colisionador.GetComponent<Idamage>();
+            if (objeto != null)
             {
-                colisionador.transform.GetComponent<Enemigo>().TomarDaño(dañoGolpe);
+                objeto.TakeDamage(dañoGolpe);
             }
         }
     }
