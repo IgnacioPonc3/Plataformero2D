@@ -8,7 +8,7 @@ public class MenuPrincipal : MonoBehaviour
     // Método para cargar la escena de juego
     public void CargarJuego()
     {
-        SceneManager.LoadScene("level1");
+        SceneManager.LoadScene("level 1");
     }
 
     // Método para cargar la escena de opciones

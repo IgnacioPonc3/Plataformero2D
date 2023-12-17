@@ -25,25 +25,18 @@ public class FinalBoss : MonoBehaviour, Idamage
     {
         animator = GetComponent<Animator>();
         rb2D = GetComponent<Rigidbody2D>();
-        //barraDeVida.InicializarBarraDeVida(vida);
         jugador = GameObject.FindGameObjectWithTag("Jugador").GetComponent<Transform>();
     }
 
     public void TakeDamage(float daño)
     {
         vida -= daño;
-
-       // barraDeVida.CambiarVidaActual(vida);
+        Debug.Log("Vida del jefe: " + vida);
 
         if (vida <= 0)
         {
             Muerte();
         }
-    }
-
-    private void Death()
-    {
-        Destroy(gameObject);
     }
 
     public void MirarJugador()
@@ -73,13 +66,14 @@ public class FinalBoss : MonoBehaviour, Idamage
     private void Muerte()
     {
         animator.SetTrigger("Muerte");
+        Destroy(gameObject);
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(controladorAtaque.position, radioAtaque);
-    }
+    //private void OnDrawGizmos()
+    //{
+       // Gizmos.color = Color.yellow;
+       // Gizmos.DrawWireSphere(controladorAtaque.position, radioAtaque);
+    //}
 
     void Update()
     {
