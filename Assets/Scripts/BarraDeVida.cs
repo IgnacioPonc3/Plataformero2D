@@ -5,29 +5,15 @@ using UnityEngine.UI;
 
 public class BarraDeVida : MonoBehaviour
 {
-    private Slider slider;
-    void Start()
-    {
-        slider = GetComponent<Slider>();
-    }
+    //public Image barraDeVida;
+   // public float vidaActual;
+    // float vidaMaxima;
+   // void Start()
+   // {
+    //}
 
-    public void CambiarVidaMaxima(float vidaMaxima)
-    {
-        slider.value = vidaMaxima;
-    }
-
-    public void CambiarVidaActual(float cantidadVida)
-    {
-        slider.value = cantidadVida;
-    }
-
-    public void InicializarBarraDeVida (float cantidadVida) 
-    {
-     CambiarVidaMaxima (cantidadVida);
-     CambiarVidaActual (cantidadVida);
-    }
-    void Update()
-    {
-        
-    }
+    //void Update()
+   // {
+    //    barraDeVida.fillAmount = vidaActual / vidaMaxima;
+    //}
 }

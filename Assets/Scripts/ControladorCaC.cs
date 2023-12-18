@@ -10,16 +10,18 @@ public class ControladorCaC : MonoBehaviour
     [SerializeField] private float dañoGolpe;
     [SerializeField] private float tiempoEntreAtaques;
     [SerializeField] private float tiempoSiguienteAtaque;
-    [SerializeField] private float vida;
+    [SerializeField] public float vida;
     [SerializeField] private float maximoVida;
-    [SerializeField] private BarraDeVida barraDeVida;
+    [SerializeField] private ParticleSystem golpeParticles;
     private Animator animator;
+    private AudioSource audioSource;
+
+
 
     private void Start()
     {
         animator = GetComponent<Animator>();
-        //vida = maximoVida;
-        //barraDeVida.InicializarBarraDeVida(vida);
+        audioSource = GetComponent<AudioSource>();
     }
 
 
@@ -38,13 +40,18 @@ public class ControladorCaC : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+            audioSource.PlayOneShot(audioSource.clip);
+            golpeParticles.Play();
+        
+
         vida -= damage;
-        barraDeVida.CambiarVidaActual(vida);
         if (vida <= 0)
         {
             Destroy(gameObject);
-        }
+        }       
     }
+
+
     private void Golpe()
     {
         animator.SetTrigger("Golpe");

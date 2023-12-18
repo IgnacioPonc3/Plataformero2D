@@ -23,7 +23,6 @@ public class MovimientoJugador : MonoBehaviour
     [SerializeField] private Transform controladorSuelo;
     [SerializeField] private Vector3 dimensionesCaja;
     private bool enSuelo;
-
     private bool salto = false;
 
     [Header("Derrota")]

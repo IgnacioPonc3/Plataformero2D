@@ -9,6 +9,8 @@ public class HabilidadJefe : MonoBehaviour
     [SerializeField] private Transform posicionCaja;
     [SerializeField] private float tiempoDeVida;
 
+
+
     private void Start()
     {
         Destroy(gameObject, tiempoDeVida);

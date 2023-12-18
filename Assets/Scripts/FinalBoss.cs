@@ -11,32 +11,49 @@ public class FinalBoss : MonoBehaviour, Idamage
 
     [Header("Vida")]
     [SerializeField] private float vida;
-    [SerializeField] private BarraDeVida barraDeVida;
 
     [Header("Ataque")]
     [SerializeField] private Transform controladorAtaque;
     [SerializeField] private float radioAtaque;
     [SerializeField] private float damageAtack;
 
-    //[Header("Persecución")]
+    [Header("Persecución")]
     [SerializeField] private float velocidadPersecucion;
     [SerializeField] private float distanciaPersecucion;
+
+
+    [SerializeField] public ParticleSystem golpeParticles;
+    private float tiempoParticulasActivas = 1f;
+
+
     void Start()
     {
         animator = GetComponent<Animator>();
         rb2D = GetComponent<Rigidbody2D>();
         jugador = GameObject.FindGameObjectWithTag("Jugador").GetComponent<Transform>();
+        golpeParticles.Stop();
     }
 
     public void TakeDamage(float daño)
     {
         vida -= daño;
+
         Debug.Log("Vida del jefe: " + vida);
 
         if (vida <= 0)
         {
             Muerte();
         }
+        golpeParticles.Play(true);
+        StartCoroutine(DesactivarParticulas());
+    }
+
+
+    private IEnumerator DesactivarParticulas()
+    {
+        yield return new WaitForSeconds(tiempoParticulasActivas);
+
+        golpeParticles.Stop();
     }
 
     public void MirarJugador()
@@ -77,23 +94,8 @@ public class FinalBoss : MonoBehaviour, Idamage
 
     void Update()
     {
-        float distanciaJugador = Vector2.Distance(transform.position, jugador.position);
-        animator.SetFloat("distanciaJugador", distanciaJugador);
-
-        // Verificar la distancia para activar persecución
-        if (distanciaJugador < distanciaPersecucion)
-        {
-            // Obtener la dirección hacia el jugador
-            Vector2 direccion = (jugador.position - transform.position).normalized;
-
-            // Mover el jefe hacia el jugador en la dirección adecuada
-            rb2D.velocity = new Vector2(direccion.x * velocidadPersecucion, rb2D.velocity.y);
-        }
-        else
-        {
-            // Si el jugador está fuera de la distancia de persecución, detener el movimiento
-            rb2D.velocity = new Vector2(0f, rb2D.velocity.y);
-        }
+       
+       
     }
 }
 
